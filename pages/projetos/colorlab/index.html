@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101116">
+    <meta name="description" content="ColorLab: crie, explore e organize paletas de cores.">
+    <title>ColorLab — Gerador de Paletas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="topbar">
+            <a class="brand" href="#gerador" aria-label="ColorLab - início">
+                <span class="brand-icon">◈</span>
+                <span>Color<span class="brand-highlight">Lab</span></span>
+            </a>
+
+            <nav class="main-nav" aria-label="Navegação principal">
+                <a href="#gerador" class="nav-link active">Gerador</a>
+                <a href="#favoritas" class="nav-link">Favoritas</a>
+                <a href="#laboratorio" class="nav-link">Laboratório</a>
+            </nav>
+
+            <button id="theme-toggle" class="icon-button" type="button"
+                aria-label="Alternar tema" title="Alternar tema">☼</button>
+        </header>
+
+        <main>
+            <section class="hero" id="gerador">
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    SEU ESPAÇO CRIATIVO
+                </div>
+
+                <h1>Encontre sua próxima <span>cor favorita.</span></h1>
+                <p class="hero-description">
+                    Gere combinações, experimente possibilidades e encontre
+                    as cores perfeitas para seus projetos.
+                </p>
+
+                <div class="generator-controls">
+                    <button id="generate-button" class="primary-button" type="button">
+                        <span aria-hidden="true">⟳</span> Gerar paleta
+                    </button>
+                    <button id="random-color-button" class="secondary-button" type="button">
+                        <span aria-hidden="true">✳</span> Cor aleatória
+                    </button>
+                </div>
+
+                <p class="keyboard-hint">
+                    Dica: pressione <kbd>Espaço</kbd> para gerar uma paleta.
+                </p>
+            </section>
+
+            <section class="palette-section" aria-labelledby="palette-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">PALETA ATUAL</p>
+                        <h2 id="palette-heading">Suas cores</h2>
+                    </div>
+
+                    <div class="palette-actions">
+                        <button id="copy-palette-button"
+                            class="secondary-button small-button" type="button">
+                            Copiar paleta
+                        </button>
+                        <button id="favorite-palette-button"
+                            class="secondary-button small-button" type="button">
+                            ♡ Favoritar
+                        </button>
+                    </div>
+                </div>
+
+                <div id="palette-container" class="palette-grid">
+                    <article class="color-card" data-color-index="0">
+                        <div class="color-swatch" style="--swatch-color:#7C5CFC">
+                            <button class="lock-button" type="button"
+                                data-action="lock" data-index="0"
+                                aria-label="Fixar primeira cor">◇</button>
+                        </div>
+                        <div class="color-info">
+                            <span class="color-name">Roxo</span>
+                            <button class="hex-button" type="button"
+                                data-action="copy-color" data-index="0"
+                                aria-label="Copiar HEX">#7C5CFC</button>
+                        </div>
+                    </article>
+
+                    <article class="color-card" data-color-index="1">
+                        <div class="color-swatch" style="--swatch-color:#38BDF8">
+                            <button class="lock-button" type="button"
+                                data-action="lock" data-index="1"
+                                aria-label="Fixar segunda cor">◇</button>
+                        </div>
+                        <div class="color-info">
+                            <span class="color-name">Azul</span>
+                            <button class="hex-button" type="button"
+                                data-action="copy-color" data-index="1">#38BDF8</button>
+                        </div>
+                    </article>
+
+                    <article class="color-card" data-color-index="2">
+                        <div class="color-swatch" style="--swatch-color:#34D399">
+                            <button class="lock-button" type="button"
+                                data-action="lock" data-index="2"
+                                aria-label="Fixar terceira cor">◇</button>
+                        </div>
+                        <div class="color-info">
+                            <span class="color-name">Verde</span>
+                            <button class="hex-button" type="button"
+                                data-action="copy-color" data-index="2">#34D399</button>
+                        </div>
+                    </article>
+
+                    <article class="color-card" data-color-index="3">
+                        <div class="color-swatch" style="--swatch-color:#FBBF24">
+                            <button class="lock-button" type="button"
+                                data-action="lock" data-index="3"
+                                aria-label="Fixar quarta cor">◇</button>
+                        </div>
+                        <div class="color-info">
+                            <span class="color-name">Amarelo</span>
+                            <button class="hex-button" type="button"
+                                data-action="copy-color" data-index="3">#FBBF24</button>
+                        </div>
+                    </article>
+
+                    <article class="color-card" data-color-index="4">
+                        <div class="color-swatch" style="--swatch-color:#FB7185">
+                            <button class="lock-button" type="button"
+                                data-action="lock" data-index="4"
+                                aria-label="Fixar quinta cor">◇</button>
+                        </div>
+                        <div class="color-info">
+                            <span class="color-name">Rosa</span>
+                            <button class="hex-button" type="button"
+                                data-action="copy-color" data-index="4">#FB7185</button>
+                        </div>
+                    </article>
+                </div>
+
+                <p class="section-footnote">
+                    <span aria-hidden="true">◇</span>
+                    Dê duplo clique no código HEX para editar uma cor.
+                </p>
+            </section>
+
+            <section id="laboratorio" class="preview-section">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">VISUALIZAÇÃO</p>
+                        <h2>Laboratório de cores</h2>
+                    </div>
+                </div>
+
+                <div id="preview-card" class="preview-card">
+                    <div class="preview-content">
+                        <span class="preview-label">PRÉVIA DE DESIGN</span>
+                        <h3 id="preview-title">Ideias que ganham cor.</h3>
+                        <p id="preview-description">
+                            Explore combinações e veja como elas funcionam
+                            juntas em uma interface.
+                        </p>
+                        <button id="preview-button" type="button">Botão de exemplo</button>
+                    </div>
+
+                    <div class="preview-shapes" aria-hidden="true">
+                        <div class="preview-circle"></div>
+                        <div class="preview-square"></div>
+                        <div class="preview-small-circle"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="favoritas" class="favorites-section">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">COLEÇÃO PESSOAL</p>
+                        <h2>Paletas favoritas</h2>
+                    </div>
+                    <span id="favorites-count" class="count-badge">0 paletas</span>
+                </div>
+
+                <div id="favorites-container" class="favorites-grid">
+                    <div id="favorites-empty" class="empty-state">
+                        <div class="empty-icon" aria-hidden="true">♡</div>
+                        <h3>Nenhuma paleta salva</h3>
+                        <p>
+                            Clique em “Favoritar” para guardar suas combinações.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <a class="brand footer-brand" href="#gerador">
+                <span class="brand-icon">◈</span>
+                <span>Color<span class="brand-highlight">Lab</span></span>
+            </a>
+            <p>Feito para experimentar. Criado para inspirar.</p>
+            <span class="footer-version">VERSÃO 1.1</span>
+        </footer>
+
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <!-- Editor de cores: abre com duplo clique no HEX -->
+    <div id="color-editor" class="editor-overlay" hidden>
+        <section class="editor-dialog" role="dialog" aria-modal="true"
+            aria-labelledby="editor-title">
+
+            <header class="editor-header">
+                <div>
+                    <p class="section-kicker">COLORLAB / EDITOR</p>
+                    <h2 id="editor-title">Editar cor</h2>
+                </div>
+                <button id="editor-close" class="editor-close" type="button"
+                    aria-label="Fechar editor">×</button>
+            </header>
+
+            <div class="editor-preview-row">
+                <div id="editor-preview" class="editor-preview"></div>
+                <div>
+                    <span class="editor-muted">Cor selecionada</span>
+                    <strong id="editor-preview-hex">#7C5CFC</strong>
+                </div>
+            </div>
+
+            <div class="editor-picker-area">
+                <label for="editor-wheel">Roda / seletor de cores</label>
+                <input id="editor-wheel" class="editor-wheel" type="color"
+                    value="#7C5CFC" aria-label="Escolher cor visualmente">
+                <p class="editor-muted">
+                    Clique no seletor para abrir a roda de cores do dispositivo.
+                </p>
+            </div>
+
+            <div class="editor-fields">
+                <label class="editor-field" for="editor-r">
+                    <span><i class="channel-dot red"></i> R — Vermelho</span>
+                    <input id="editor-r" type="number" min="0" max="255"
+                        step="1" value="124" inputmode="numeric">
+                </label>
+
+                <label class="editor-field" for="editor-g">
+                    <span><i class="channel-dot green"></i> G — Verde</span>
+                    <input id="editor-g" type="number" min="0" max="255"
+                        step="1" value="92" inputmode="numeric">
+                </label>
+
+                <label class="editor-field" for="editor-b">
+                    <span><i class="channel-dot blue"></i> B — Azul</span>
+                    <input id="editor-b" type="number" min="0" max="255"
+                        step="1" value="252" inputmode="numeric">
+                </label>
+
+                <label class="editor-field hex-field" for="editor-hex">
+                    <span># — Código HEX</span>
+                    <input id="editor-hex" type="text" value="#7C5CFC"
+                        maxlength="7" spellcheck="false"
+                        autocomplete="off" autocapitalize="characters"
+                        placeholder="#RRGGBB">
+                </label>
+            </div>
+
+            <p id="editor-error" class="editor-error" role="alert"></p>
+
+            <footer class="editor-actions">
+                <button id="editor-cancel" class="secondary-button"
+                    type="button">Cancelar</button>
+                <button id="editor-apply" class="primary-button"
+                    type="button">Aplicar cor</button>
+                    
+            </footer>
+        </section>
+    </div>
+
+    <a href="../../../index.html" class="back-portfolio">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Voltar ao portfólio</span>
+            </a>
+        </aside>
+</body>
+</html>

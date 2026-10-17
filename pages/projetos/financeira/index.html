@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Organizador Financeiro Pessoal — demonstração interativa de controle financeiro, orçamentos e relatórios."
+    >
+    <meta name="theme-color" content="#0B0D17">
+
+    <title>Finora — Organizador Financeiro</title>
+
+    <!-- Estilos do projeto -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Ícones -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- JavaScript do projeto -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- ========================================
+             BARRA LATERAL
+        ========================================= -->
+        <aside class="sidebar" id="sidebar">
+
+            <a href="#inicio" class="brand">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </span>
+
+                <span class="brand-text">
+                    <strong>Finora</strong>
+                    <small>Organizador financeiro</small>
+                </span>
+            </a>
+
+            <div class="sidebar-label">MENU PRINCIPAL</div>
+
+            <nav class="sidebar-nav" aria-label="Navegação principal">
+                <a href="#inicio" class="nav-link active" data-section="inicio">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Visão geral</span>
+                </a>
+
+                <a href="#transacoes" class="nav-link" data-section="transacoes">
+                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    <span>Transações</span>
+                </a>
+
+                <a href="#orcamentos" class="nav-link" data-section="orcamentos">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Orçamentos</span>
+                </a>
+
+                <a href="#relatorios" class="nav-link" data-section="relatorios">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Relatórios</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-label">SISTEMA</div>
+
+            <nav class="sidebar-nav" aria-label="Informações do sistema">
+                <a href="#categorias" class="nav-link" data-section="categorias">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Categorias</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-spacer"></div>
+
+            <div class="demo-notice">
+                <span class="demo-notice-icon">
+                    <i class="fa-solid fa-flask"></i>
+                </span>
+
+                <div>
+                    <strong>Modo demonstração</strong>
+                    <p>Todos os valores são fictícios.</p>
+                </div>
+            </div>
+
+            <a href="../../../index.html" class="back-portfolio">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Voltar ao portfólio</span>
+            </a>
+        </aside>
+
+        <!-- ========================================
+             CONTEÚDO PRINCIPAL
+        ========================================= -->
+        <main class="main-area main-content" id="conteudo-principal">
+
+            <!-- CABEÇALHO -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button
+                        class="icon-button menu-toggle"
+                        id="menu-toggle"
+                        type="button"
+                        aria-label="Abrir menu"
+                        aria-expanded="false"
+                        aria-controls="sidebar"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+                        <p class="breadcrumb">FINANÇAS / PAINEL</p>
+                        <h1 id="page-title">Visão geral</h1>
+                    </div>
+                </div>
+
+                <div class="topbar-actions">
+                    <div class="demo-badge">
+                        <span></span>
+                        DEMONSTRAÇÃO
+                    </div>
+
+                    <button
+                        class="icon-button"
+                        id="help-button"
+                        type="button"
+                        aria-label="Sobre a demonstração"
+                        title="Sobre a demonstração"
+                    >
+                        <i class="fa-regular fa-circle-question"></i>
+                    </button>
+
+                    <div class="user-avatar" aria-label="Usuário de demonstração">
+                        AR
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTEÚDO DAS SEÇÕES -->
+            <div class="page-content">
+
+                <!-- ====================================
+                     VISÃO GERAL
+                ===================================== -->
+                <section id="inicio" class="content-section active">
+                    <div class="welcome-row">
+                        <div>
+                            <p class="eyebrow">SEU DINHEIRO, SOB CONTROLE</p>
+                            <h2>Visão geral financeira</h2>
+                            <p class="section-description">
+                                Acompanhe suas finanças e explore os recursos do sistema.
+                            </p>
+                        </div>
+
+                        <div class="date-display">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span id="current-date">Outubro de 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- CARDS FINANCEIROS -->
+                    <div class="summary-grid">
+
+                        <article class="summary-card balance-card">
+                            <div class="summary-top">
+                                <span class="summary-label">Saldo disponível</span>
+                                <span class="summary-icon purple">
+                                    <i class="fa-solid fa-wallet"></i>
+                                </span>
+                            </div>
+
+                            <div class="summary-value" id="balance-value">
+                                R$ 4.850,00
+                            </div>
+
+                            <div class="summary-footer">
+                                <span class="trend positive">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                    8,4%
+                                </span>
+                                <span>em relação ao mês anterior</span>
+                            </div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-top">
+                                <span class="summary-label">Receitas do mês</span>
+                                <span class="summary-icon green">
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                </span>
+                            </div>
+
+                            <div class="summary-value" id="income-value">
+                                R$ 5.800,00
+                            </div>
+
+                            <div class="summary-footer">
+                                <span class="trend positive">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                    5,2%
+                                </span>
+                                <span>em relação ao mês anterior</span>
+                            </div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-top">
+                                <span class="summary-label">Despesas do mês</span>
+                                <span class="summary-icon red">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </span>
+                            </div>
+
+                            <div class="summary-value" id="expense-value">
+                                R$ 2.450,00
+                            </div>
+
+                            <div class="summary-footer">
+                                <span class="trend negative">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                    2,1%
+                                </span>
+                                <span>em relação ao mês anterior</span>
+                            </div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-top">
+                                <span class="summary-label">Economia do mês</span>
+                                <span class="summary-icon blue">
+                                    <i class="fa-solid fa-piggy-bank"></i>
+                                </span>
+                            </div>
+
+                            <div class="summary-value" id="savings-value">
+                                R$ 3.350,00
+                            </div>
+
+                            <div class="summary-footer">
+                                <span class="trend positive">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                    57,8%
+                                </span>
+                                <span>da receita mensal</span>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <!-- GRÁFICO E ORÇAMENTO -->
+                    <div class="dashboard-grid">
+
+                        <article class="panel chart-panel">
+                            <div class="panel-header">
+                                <div>
+                                    <h3>Fluxo financeiro</h3>
+                                    <p>Comparação entre receitas e despesas</p>
+                                </div>
+
+                                <label class="visually-hidden" for="chart-period">
+                                    Período do gráfico
+                                </label>
+
+                                <select id="chart-period" class="select-control">
+                                    <option value="6">Últimos 6 meses</option>
+                                    <option value="3">Últimos 3 meses</option>
+                                </select>
+                            </div>
+
+                            <div class="chart-legend">
+                                <span>
+                                    <i class="legend-dot income-dot"></i>
+                                    Receitas
+                                </span>
+
+                                <span>
+                                    <i class="legend-dot expense-dot"></i>
+                                    Despesas
+                                </span>
+                            </div>
+
+                            <div
+                                class="bar-chart"
+                                id="cashflow-chart"
+                                role="img"
+                                aria-label="Gráfico demonstrativo de receitas e despesas mensais"
+                            >
+                                <!-- Preenchido pelo JavaScript -->
+                            </div>
+                        </article>
+
+                        <article class="panel budget-panel">
+                            <div class="panel-header">
+                                <div>
+                                    <h3>Orçamento mensal</h3>
+                                    <p>Resumo dos seus limites</p>
+                                </div>
+
+                                <button
+                                    class="text-button"
+                                    type="button"
+                                    data-go-to="orcamentos"
+                                >
+                                    Ver tudo
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <div class="budget-total">
+                                <div>
+                                    <span class="muted-label">Total utilizado</span>
+                                    <strong id="budget-used">R$ 2.450,00</strong>
+                                </div>
+
+                                <div class="budget-percentage" id="budget-percentage">
+                                    61%
+                                </div>
+                            </div>
+
+                            <div class="progress-track">
+                                <div
+                                    class="progress-fill purple-fill"
+                                    id="budget-progress"
+                                    style="width: 61%"
+                                ></div>
+                            </div>
+
+                            <p class="budget-caption" id="budget-caption">
+                                R$ 1.550,00 restantes do limite demonstrativo.
+                            </p>
+
+                            <div class="mini-budget-list" id="mini-budget-list">
+                                <!-- Preenchido pelo JavaScript -->
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <!-- TRANSAÇÕES RECENTES -->
+                    <article class="panel transactions-panel">
+                        <div class="panel-header">
+                            <div>
+                                <h3>Transações recentes</h3>
+                                <p>Últimas movimentações demonstrativas</p>
+                            </div>
+
+                            <button
+                                class="text-button"
+                                type="button"
+                                data-go-to="transacoes"
+                            >
+                                Ver transações
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Descrição</th>
+                                        <th>Categoria</th>
+                                        <th>Data</th>
+                                        <th>Tipo</th>
+                                        <th class="text-right">Valor</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="recent-transactions">
+                                    <!-- Preenchido pelo JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                </section>
+
+                <!-- ====================================
+                     TRANSAÇÕES
+                ===================================== -->
+                <section id="transacoes" class="content-section">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">MOVIMENTAÇÕES</p>
+                            <h2>Transações</h2>
+                            <p class="section-description">
+                                Explore receitas e despesas fictícias.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="transaction-summary-grid">
+                        <article class="panel compact-stat">
+                            <span>Receitas demonstrativas</span>
+                            <strong class="text-income" id="transaction-income">
+                                R$ 5.800,00
+                            </strong>
+                        </article>
+
+                        <article class="panel compact-stat">
+                            <span>Despesas demonstrativas</span>
+                            <strong class="text-expense" id="transaction-expenses">
+                                R$ 2.450,00
+                            </strong>
+                        </article>
+
+                        <article class="panel compact-stat">
+                            <span>Movimentações</span>
+                            <strong id="transaction-count">8</strong>
+                        </article>
+                    </div>
+
+                    <article class="panel">
+                        <div class="panel-header transaction-filters-header">
+                            <div>
+                                <h3>Histórico de movimentações</h3>
+                                <p>Os registros abaixo são apenas exemplos.</p>
+                            </div>
+                        </div>
+
+                        <div class="filter-row">
+                            <label class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input
+                                    id="transaction-search"
+                                    type="search"
+                                    placeholder="Buscar transação..."
+                                >
+                            </label>
+
+                            <label class="visually-hidden" for="transaction-type-filter">
+                                Filtrar por tipo
+                            </label>
+
+                            <select id="transaction-type-filter" class="select-control">
+                                <option value="all">Todos os tipos</option>
+                                <option value="income">Receitas</option>
+                                <option value="expense">Despesas</option>
+                            </select>
+
+                            <label class="visually-hidden" for="transaction-category-filter">
+                                Filtrar por categoria
+                            </label>
+
+                            <select id="transaction-category-filter" class="select-control">
+                                <option value="all">Todas as categorias</option>
+                            </select>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Descrição</th>
+                                        <th>Categoria</th>
+                                        <th>Data</th>
+                                        <th>Tipo</th>
+                                        <th class="text-right">Valor</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="all-transactions">
+                                    <!-- Preenchido pelo JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-footer">
+                            <span id="transaction-results">
+                                Exibindo transações de demonstração
+                            </span>
+                            <span>Valores fictícios</span>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- ====================================
+                     ORÇAMENTOS
+                ===================================== -->
+                <section id="orcamentos" class="content-section">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">PLANEJAMENTO</p>
+                            <h2>Orçamentos</h2>
+                            <p class="section-description">
+                                Acompanhe limites fictícios por categoria.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="budget-overview-grid">
+                        <article class="panel budget-overview-card">
+                            <span class="summary-icon purple">
+                                <i class="fa-solid fa-wallet"></i>
+                            </span>
+                            <p>Limite total</p>
+                            <strong id="total-budget-value">R$ 4.000,00</strong>
+                        </article>
+
+                        <article class="panel budget-overview-card">
+                            <span class="summary-icon blue">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </span>
+                            <p>Total utilizado</p>
+                            <strong id="total-spent-value">R$ 2.450,00</strong>
+                        </article>
+
+                        <article class="panel budget-overview-card">
+                            <span class="summary-icon green">
+                                <i class="fa-solid fa-piggy-bank"></i>
+                            </span>
+                            <p>Limite restante</p>
+                            <strong id="total-remaining-value">R$ 1.550,00</strong>
+                        </article>
+                    </div>
+
+                    <div class="budget-cards-grid" id="budget-cards">
+                        <!-- Cartões de orçamento preenchidos pelo JavaScript -->
+                    </div>
+
+                    <div class="demo-disclaimer">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p>
+                            Estes limites e valores são fictícios e servem apenas
+                            para demonstrar como o sistema poderia acompanhar
+                            os gastos por categoria.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- ====================================
+                     RELATÓRIOS
+                ===================================== -->
+                <section id="relatorios" class="content-section">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">ANÁLISE FINANCEIRA</p>
+                            <h2>Relatórios</h2>
+                            <p class="section-description">
+                                Visualize indicadores e distribuições de exemplo.
+                            </p>
+                        </div>
+
+                        <label class="report-period">
+                            <span>Período</span>
+                            <select id="report-period" class="select-control">
+                                <option value="month">Mês atual</option>
+                                <option value="quarter">Últimos 3 meses</option>
+                                <option value="year">Últimos 6 meses</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="report-kpi-grid">
+                        <article class="panel report-kpi">
+                            <span>Receitas</span>
+                            <strong id="report-income">R$ 5.800,00</strong>
+                            <small>Valores demonstrativos</small>
+                        </article>
+
+                        <article class="panel report-kpi">
+                            <span>Despesas</span>
+                            <strong id="report-expenses">R$ 2.450,00</strong>
+                            <small>Valores demonstrativos</small>
+                        </article>
+
+                        <article class="panel report-kpi">
+                            <span>Saldo do período</span>
+                            <strong id="report-balance">R$ 3.350,00</strong>
+                            <small>Receitas menos despesas</small>
+                        </article>
+
+                        <article class="panel report-kpi">
+                            <span>Taxa de economia</span>
+                            <strong id="report-savings-rate">57,8%</strong>
+                            <small>Saldo dividido pelas receitas</small>
+                        </article>
+                    </div>
+
+                    <div class="dashboard-grid report-charts-grid">
+                        <article class="panel">
+                            <div class="panel-header">
+                                <div>
+                                    <h3>Despesas por categoria</h3>
+                                    <p>Distribuição dos gastos do período</p>
+                                </div>
+                            </div>
+
+                            <div
+                                id="category-chart"
+                                class="category-chart"
+                                role="img"
+                                aria-label="Distribuição demonstrativa das despesas por categoria"
+                            >
+                                <!-- Preenchido pelo JavaScript -->
+                            </div>
+                        </article>
+
+                        <article class="panel">
+                            <div class="panel-header">
+                                <div>
+                                    <h3>Resumo financeiro</h3>
+                                    <p>Comparação de receitas e despesas</p>
+                                </div>
+                            </div>
+
+                            <div id="report-comparison" class="report-comparison">
+                                <!-- Preenchido pelo JavaScript -->
+                            </div>
+                        </article>
+                    </div>
+
+                    <article class="panel">
+                        <div class="panel-header">
+                            <div>
+                                <h3>Evolução mensal</h3>
+                                <p>Comparação dos últimos meses de exemplo</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bar-chart report-monthly-chart"
+                            id="report-monthly-chart"
+                            role="img"
+                            aria-label="Comparação mensal demonstrativa de receitas e despesas"
+                        >
+                            <!-- Preenchido pelo JavaScript -->
+                        </div>
+                    </article>
+                </section>
+
+                <!-- ====================================
+                     CATEGORIAS
+                ===================================== -->
+                <section id="categorias" class="content-section">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">ORGANIZAÇÃO</p>
+                            <h2>Categorias</h2>
+                            <p class="section-description">
+                                Conheça as categorias usadas nos registros fictícios.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="category-cards-grid" id="category-cards">
+                        <!-- Categorias preenchidas pelo JavaScript -->
+                    </div>
+
+                    <div class="demo-disclaimer">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p>
+                            A versão demonstrativa não permite criar, editar ou
+                            excluir categorias permanentemente.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- RODAPÉ -->
+                <footer class="app-footer">
+                    <span>Finora <span class="footer-dot">•</span> Organizador Financeiro</span>
+                    <span>Projeto demonstrativo · <span id="footer-year">2026</span></span>
+                </footer>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- FUNDO DO MENU MOBILE -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- MODAL INFORMATIVO -->
+    <dialog class="info-dialog" id="info-dialog">
+        <div class="dialog-header">
+            <span class="summary-icon purple">
+                <i class="fa-solid fa-flask"></i>
+            </span>
+
+            <button
+                class="icon-button"
+                id="close-dialog"
+                type="button"
+                aria-label="Fechar"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <h2>Sobre esta demonstração</h2>
+
+        <p>
+            O Finora é um projeto demonstrativo de organização financeira.
+            Os nomes, saldos, receitas, despesas e orçamentos apresentados
+            são fictícios.
+        </p>
+
+        <p>
+            Nenhuma informação financeira é salva. As interações servem
+            para explorar a interface, os filtros e os relatórios.
+        </p>
+
+        <button class="primary-button" id="dialog-ok" type="button">
+            Entendi
+        </button>
+    </dialog>
+
+</body>
+</html>

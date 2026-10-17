@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b14">
+    <meta name="description" content="Organizador pessoal de rotina, tarefas, metas e produtividade.">
+
+    <title>NEXUS — Organizador de Rotina</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-shell">
+
+        <aside class="sidebar" id="sidebar">
+            <a class="brand" href="#dashboard" aria-label="NEXUS, página inicial">
+                <span class="brand-symbol">N</span>
+                <span class="brand-name">NEXUS<span>.</span></span>
+            </a>
+
+            <div class="sidebar-label">ESPAÇO DE TRABALHO</div>
+
+            <nav class="main-nav" aria-label="Navegação principal">
+                <button class="nav-item active" data-page="dashboard">
+                    <span>◈</span> Visão geral
+                </button>
+                <button class="nav-item" data-page="tasks">
+                    <span>☷</span> Tarefas
+                    <span class="nav-counter" id="nav-task-count">0</span>
+                </button>
+                <button class="nav-item" data-page="calendar">
+                    <span>▦</span> Calendário
+                </button>
+                <button class="nav-item" data-page="goals">
+                    <span>◎</span> Minhas metas
+                </button>
+                <button class="nav-item" data-page="pomodoro">
+                    <span>◷</span> Modo foco
+                </button>
+                <button class="nav-item" data-page="reminders">
+                    <span>♧</span> Lembretes
+                </button>
+                <button class="nav-item" data-page="analytics">
+                    <span>⌁</span> Estatísticas
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="focus-card">
+                    <div class="focus-card-icon">✦</div>
+                    <strong>Um passo de cada vez.</strong>
+                    <p>Organize seu tempo e acompanhe sua evolução.</p>
+                </div>
+
+                <button class="nav-item" data-page="settings">
+                    <span>⚙</span> Configurações
+                </button>
+
+                <a href="../../../index.html" class="back-portfolio">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Voltar ao portfólio</span>
+                </a>
+            
+
+                <div class="storage-status">
+                    <span class="status-dot"></span>
+                    <span>Armazenamento local</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <button class="icon-button menu-toggle" id="menu-toggle"
+                    aria-label="Abrir menu" aria-expanded="false">
+                    ☰
+                </button>
+
+                <div class="breadcrumb">
+                    <span>NEXUS</span>
+                    <span class="breadcrumb-separator">/</span>
+                    <strong id="current-section">Visão geral</strong>
+                </div>
+
+                <div class="topbar-actions">
+                    <span class="current-date" id="header-date"></span>
+                    <button class="icon-button" id="notification-button"
+                        aria-label="Ativar notificações" title="Notificações">
+                        ♧
+                    </button>
+                    <button class="avatar" id="profile-button" title="Perfil">U</button>
+                </div>
+            </header>
+
+            <div class="page-container">
+
+                <!-- VISÃO GERAL -->
+                <section class="page active" id="page-dashboard">
+                    <div class="welcome-row">
+                        <div>
+                            <div class="eyebrow">
+                                <span class="status-dot"></span>
+                                SEU CENTRO DE CONTROLE
+                            </div>
+                            <h1>Organize seu <span>universo.</span></h1>
+                            <p class="page-description" id="welcome-date">
+                                Uma nova oportunidade para avançar.
+                            </p>
+                        </div>
+
+                        <button class="primary-button" id="quick-add-task">
+                            <span>＋</span> Nova tarefa
+                        </button>
+                    </div>
+
+                    <div class="stats-grid">
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span>Tarefas de hoje</span>
+                                <span class="stat-icon cyan">☷</span>
+                            </div>
+                            <strong class="stat-value" id="stat-tasks">0</strong>
+                            <span class="stat-caption" id="stat-tasks-caption">
+                                Nenhuma tarefa cadastrada
+                            </span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span>Concluídas hoje</span>
+                                <span class="stat-icon green">✓</span>
+                            </div>
+                            <strong class="stat-value" id="stat-completed">0</strong>
+                            <span class="stat-caption">Tarefas finalizadas</span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span>Metas ativas</span>
+                                <span class="stat-icon purple">◎</span>
+                            </div>
+                            <strong class="stat-value" id="stat-goals">0</strong>
+                            <span class="stat-caption">Objetivos em andamento</span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span>Tempo de foco</span>
+                                <span class="stat-icon orange">◷</span>
+                            </div>
+                            <strong class="stat-value" id="stat-focus">0 min</strong>
+                            <span class="stat-caption">Registrado hoje</span>
+                        </article>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <article class="panel tasks-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h2>Agenda de hoje</h2>
+                                    <p>Suas próximas atividades</p>
+                                </div>
+                                <button class="text-button" data-go="tasks">
+                                    Ver tarefas →
+                                </button>
+                            </div>
+
+                            <div class="task-list" id="today-task-list"></div>
+
+                            <button class="secondary-button full-width"
+                                id="dashboard-add-task">
+                                ＋ Adicionar atividade
+                            </button>
+                        </article>
+
+                        <article class="panel progress-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h2>Seu progresso</h2>
+                                    <p>Conclusão das tarefas de hoje</p>
+                                </div>
+                            </div>
+
+                            <div class="progress-ring-wrap">
+                                <div class="progress-ring" id="daily-progress-ring">
+                                    <div class="progress-ring-inner">
+                                        <strong id="daily-progress-value">0%</strong>
+                                        <span>concluído</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="progress-legend">
+                                <span><i class="legend-dot completed-dot"></i> Concluídas</span>
+                                <strong id="daily-progress-count">0 de 0</strong>
+                            </div>
+
+                            <div class="progress-track">
+                                <div class="progress-fill" id="daily-progress-bar"></div>
+                            </div>
+                        </article>
+
+                        <article class="panel mini-calendar-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h2>Calendário</h2>
+                                    <p id="mini-calendar-month"></p>
+                                </div>
+                                <button class="text-button" data-go="calendar">
+                                    Abrir →
+                                </button>
+                            </div>
+                            <div class="mini-calendar" id="mini-calendar"></div>
+                        </article>
+
+                        <article class="panel goals-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h2>Metas em destaque</h2>
+                                    <p>Continue avançando</p>
+                                </div>
+                                <button class="text-button" data-go="goals">
+                                    Ver todas →
+                                </button>
+                            </div>
+                            <div id="dashboard-goals"></div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- TAREFAS -->
+                <section class="page" id="page-tasks">
+                    <div class="page-heading-row">
+                        <div>
+                            <div class="eyebrow">ORGANIZAÇÃO</div>
+                            <h1>Minhas <span>tarefas.</span></h1>
+                            <p class="page-description">Transforme planos em ações.</p>
+                        </div>
+                        <button class="primary-button" id="add-task-button">
+                            ＋ Nova tarefa
+                        </button>
+                    </div>
+
+                    <div class="toolbar">
+                        <input type="search" id="task-search"
+                            placeholder="Buscar tarefa..." aria-label="Buscar tarefa">
+
+                        <select id="task-filter" aria-label="Filtrar tarefas">
+                            <option value="all">Todas as tarefas</option>
+                            <option value="pending">Pendentes</option>
+                            <option value="completed">Concluídas</option>
+                            <option value="today">Para hoje</option>
+                        </select>
+
+                        <select id="task-priority-filter" aria-label="Filtrar prioridade">
+                            <option value="all">Todas as prioridades</option>
+                            <option value="high">Alta</option>
+                            <option value="medium">Média</option>
+                            <option value="low">Baixa</option>
+                        </select>
+                    </div>
+
+                    <div class="panel">
+                        <div class="task-list" id="all-task-list"></div>
+                    </div>
+                </section>
+
+                <!-- CALENDÁRIO -->
+                <section class="page" id="page-calendar">
+                    <div class="page-heading-row">
+                        <div>
+                            <div class="eyebrow">PLANEJAMENTO</div>
+                            <h1>Seu <span>calendário.</span></h1>
+                            <p class="page-description">Visualize sua rotina e seus compromissos.</p>
+                        </div>
+                        <button class="primary-button" id="calendar-add-task">
+                            ＋ Agendar tarefa
+                        </button>
+                    </div>
+
+                    <article class="panel calendar-panel">
+                        <div class="calendar-toolbar">
+                            <div>
+                                <h2 id="calendar-title">Mês atual</h2>
+                                <p>Selecione um dia para ver suas atividades.</p>
+                            </div>
+                            <div class="calendar-controls">
+                                <button class="icon-button" id="calendar-prev"
+                                    aria-label="Mês anterior">←</button>
+                                <button class="secondary-button" id="calendar-today">
+                                    Hoje
+                                </button>
+                                <button class="icon-button" id="calendar-next"
+                                    aria-label="Próximo mês">→</button>
+                            </div>
+                        </div>
+
+                        <div class="calendar-grid" id="calendar-grid"></div>
+
+                        <div class="selected-day-panel">
+                            <h3 id="selected-day-title">Atividades do dia</h3>
+                            <div id="selected-day-tasks"></div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- METAS -->
+                <section class="page" id="page-goals">
+                    <div class="page-heading-row">
+                        <div>
+                            <div class="eyebrow">EVOLUÇÃO PESSOAL</div>
+                            <h1>Grandes <span>objetivos.</span></h1>
+                            <p class="page-description">Cada pequena conquista conta.</p>
+                        </div>
+                        <button class="primary-button" id="add-goal-button">
+                            ＋ Nova meta
+                        </button>
+                    </div>
+
+                    <div class="goal-grid" id="goals-list"></div>
+                </section>
+
+                <!-- POMODORO -->
+                <section class="page" id="page-pomodoro">
+                    <div class="page-heading-row">
+                        <div>
+                            <div class="eyebrow">PRODUTIVIDADE</div>
+                            <h1>Modo <span>foco.</span></h1>
+                            <p class="page-description">Uma coisa de cada vez. Faça valer o tempo.</p>
+                        </div>
+                    </div>
+
+                    <div class="focus-layout">
+                        <article class="panel pomodoro-panel">
+                            <div class="pomodoro-mode" id="pomodoro-mode">SESSÃO DE FOCO</div>
+
+                            <div class="pomodoro-ring" id="pomodoro-ring">
+                                <div class="pomodoro-time-wrap">
+                                    <strong id="pomodoro-time">25:00</strong>
+                                    <span id="pomodoro-status">Pronto para começar</span>
+                                </div>
+                            </div>
+
+                            <div class="pomodoro-controls">
+                                <button class="primary-button" id="pomodoro-start">
+                                    ▶ Iniciar foco
+                                </button>
+                                <button class="secondary-button" id="pomodoro-reset">
+                                    ↺ Reiniciar
+                                </button>
+                            </div>
+
+                            <p class="pomodoro-sessions">
+                                Sessões concluídas hoje:
+                                <strong id="pomodoro-sessions">0</strong>
+                            </p>
+                        </article>
+
+                        <article class="panel pomodoro-settings">
+                            <h2>Configurar sessões</h2>
+                            <p>Adapte os ciclos ao seu ritmo.</p>
+
+                            <label for="focus-duration">Tempo de foco (minutos)</label>
+                            <input type="number" id="focus-duration"
+                                min="1" max="180" value="25">
+
+                            <label for="short-break-duration">Descanso curto (minutos)</label>
+                            <input type="number" id="short-break-duration"
+                                min="1" max="60" value="5">
+
+                            <label for="long-break-duration">Descanso longo (minutos)</label>
+                            <input type="number" id="long-break-duration"
+                                min="1" max="90" value="15">
+
+                            <label for="pomodoro-task">Tarefa em foco</label>
+                            <select id="pomodoro-task">
+                                <option value="">Foco livre</option>
+                            </select>
+
+                            <button class="secondary-button full-width"
+                                id="pomodoro-save-settings">
+                                Salvar configurações
+                            </button>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- LEMBRETES -->
+                <section class="page" id="page-reminders">
+                    <div class="page-heading-row">
+                        <div>
+                            <div class="eyebrow">COMPROMISSOS</div>
+                            <h1>Seus <span>lembretes.</span></h1>
+                            <p class="page-description">Não deixe passar o que importa.</p>
+                        </div>
+                        <button class="primary-button" id="add-reminder-button">
+                            ＋ Novo lembrete
+                        </button>
+                    </div>
+
+                    <div class="panel">
+                        <div class="reminder-list" id="reminders-list"></div>
+                    </div>
+
+                    <p class="help-note">
+                        As notificações dependem da permissão do navegador.
+                        Mantenha o aplicativo aberto para verificar lembretes
+                        enquanto estiver em uso.
+                    </p>
+                </section>
+
+                <!-- ESTATÍSTICAS -->
+                <section class="page" id="page-analytics">
+                    <div class="page-heading-row">
+                        <div>
+                            <div class="eyebrow">SEUS RESULTADOS</div>
+                            <h1>Dados em <span>perspectiva.</span></h1>
+                            <p class="page-description">Acompanhe sua consistência ao longo do tempo.</p>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid analytics-stats">
+                        <article class="stat-card">
+                            <span class="stat-caption">Total de tarefas</span>
+                            <strong class="stat-value" id="analytics-total">0</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-caption">Taxa de conclusão</span>
+                            <strong class="stat-value" id="analytics-rate">0%</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-caption">Sessões de foco</span>
+                            <strong class="stat-value" id="analytics-sessions">0</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-caption">Minutos de foco</span>
+                            <strong class="stat-value" id="analytics-minutes">0</strong>
+                        </article>
+                    </div>
+
+                    <div class="analytics-grid">
+                        <article class="panel chart-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h2>Atividades dos últimos 7 dias</h2>
+                                    <p>Tarefas concluídas por dia</p>
+                                </div>
+                            </div>
+                            <div class="chart-container" id="weekly-chart"
+                                role="img" aria-label="Gráfico de tarefas concluídas nos últimos sete dias"></div>
+                        </article>
+
+                        <article class="panel chart-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h2>Distribuição de tarefas</h2>
+                                    <p>Concluídas e pendentes</p>
+                                </div>
+                            </div>
+                            <div class="chart-container" id="task-distribution-chart"
+                                role="img" aria-label="Distribuição de tarefas concluídas e pendentes"></div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- CONFIGURAÇÕES -->
+                <section class="page" id="page-settings">
+                    <div class="page-heading-row">
+                        <div>
+                            <div class="eyebrow">PERSONALIZAÇÃO</div>
+                            <h1>Configurações<span>.</span></h1>
+                            <p class="page-description">Gerencie seus dados e suas preferências.</p>
+                        </div>
+                    </div>
+
+                    <article class="panel settings-section">
+                        <h2>Dados e backups</h2>
+                        <p>Exporte seus dados para guardá-los ou importá-los em outro navegador.</p>
+
+                        <div class="settings-actions">
+                            <button class="primary-button" id="export-data-button">
+                                ↓ Exportar dados
+                            </button>
+                            <button class="secondary-button" id="import-data-button">
+                                ↑ Importar backup
+                            </button>
+                            <input type="file" id="import-file-input"
+                                accept=".json,application/json" hidden>
+                        </div>
+
+                        <p class="help-note">
+                            A importação substitui os dados atuais após a confirmação.
+                            Faça uma exportação antes de importar se quiser preservar
+                            uma cópia do estado atual.
+                        </p>
+                    </article>
+
+                    <article class="panel settings-section">
+                        <h2>Notificações</h2>
+                        <p>Autorize as notificações para receber alertas durante o uso.</p>
+                        <button class="secondary-button" id="settings-notifications">
+                            Ativar notificações
+                        </button>
+                        <p id="notification-permission-status" class="help-note">
+                            Permissão ainda não verificada.
+                        </p>
+                    </article>
+
+                    <article class="panel settings-section danger-zone">
+                        <h2>Zona de atenção</h2>
+                        <p>Apagar os dados locais remove tarefas, metas, lembretes e histórico deste navegador.</p>
+                        <button class="danger-button" id="clear-data-button">
+                            Apagar todos os dados
+                        </button>
+                    </article>
+
+                    <div class="app-footer">
+                        NEXUS · Organizador de Rotina
+                        <span>Seus dados ficam no seu navegador.</span>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL DE TAREFA -->
+    <dialog class="app-dialog" id="task-dialog">
+        <form id="task-form">
+            <div class="dialog-heading">
+                <div>
+                    <div class="eyebrow">ORGANIZAÇÃO</div>
+                    <h2 id="task-dialog-title">Nova tarefa</h2>
+                </div>
+                <button type="button" class="icon-button dialog-close"
+                    data-close-dialog="task-dialog" aria-label="Fechar">×</button>
+            </div>
+
+            <input type="hidden" id="task-id">
+
+            <label for="task-title">Título da tarefa *</label>
+            <input type="text" id="task-title" maxlength="120"
+                placeholder="Ex.: Estudar matemática" required>
+
+            <label for="task-description">Descrição</label>
+            <textarea id="task-description" rows="3" maxlength="1000"
+                placeholder="Detalhes adicionais..."></textarea>
+
+            <div class="form-grid">
+                <div>
+                    <label for="task-date">Data *</label>
+                    <input type="date" id="task-date" required>
+                </div>
+                <div>
+                    <label for="task-time">Horário</label>
+                    <input type="time" id="task-time">
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div>
+                    <label for="task-priority">Prioridade</label>
+                    <select id="task-priority">
+                        <option value="low">Baixa</option>
+                        <option value="medium" selected>Média</option>
+                        <option value="high">Alta</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="task-category">Categoria</label>
+                    <select id="task-category">
+                        <option value="Pessoal">Pessoal</option>
+                        <option value="Estudos">Estudos</option>
+                        <option value="Trabalho">Trabalho</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="dialog-actions">
+                <button type="button" class="secondary-button"
+                    data-close-dialog="task-dialog">Cancelar</button>
+                <button type="submit" class="primary-button">Salvar tarefa</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- MODAL DE META -->
+    <dialog class="app-dialog" id="goal-dialog">
+        <form id="goal-form">
+            <div class="dialog-heading">
+                <div>
+                    <div class="eyebrow">OBJETIVOS</div>
+                    <h2 id="goal-dialog-title">Nova meta</h2>
+                </div>
+                <button type="button" class="icon-button dialog-close"
+                    data-close-dialog="goal-dialog" aria-label="Fechar">×</button>
+            </div>
+
+            <input type="hidden" id="goal-id">
+
+            <label for="goal-title">Nome da meta *</label>
+            <input type="text" id="goal-title" maxlength="120"
+                placeholder="Ex.: Ler 12 livros" required>
+
+            <label for="goal-description">Descrição</label>
+            <textarea id="goal-description" rows="2" maxlength="500"
+                placeholder="O que você deseja alcançar?"></textarea>
+
+            <div class="form-grid">
+                <div>
+                    <label for="goal-target">Objetivo numérico *</label>
+                    <input type="number" id="goal-target"
+                        min="1" max="1000000" value="12" required>
+                </div>
+                <div>
+                    <label for="goal-progress">Progresso atual</label>
+                    <input type="number" id="goal-progress"
+                        min="0" max="1000000" value="0" required>
+                </div>
+            </div>
+
+            <label for="goal-unit">Unidade de medida</label>
+            <input type="text" id="goal-unit" maxlength="30"
+                placeholder="Ex.: livros, horas, páginas">
+
+            <label for="goal-deadline">Prazo</label>
+            <input type="date" id="goal-deadline">
+
+            <div class="dialog-actions">
+                <button type="button" class="secondary-button"
+                    data-close-dialog="goal-dialog">Cancelar</button>
+                <button type="submit" class="primary-button">Salvar meta</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- MODAL DE LEMBRETE -->
+    <dialog class="app-dialog" id="reminder-dialog">
+        <form id="reminder-form">
+            <div class="dialog-heading">
+                <div>
+                    <div class="eyebrow">NOTIFICAÇÕES</div>
+                    <h2 id="reminder-dialog-title">Novo lembrete</h2>
+                </div>
+                <button type="button" class="icon-button dialog-close"
+                    data-close-dialog="reminder-dialog" aria-label="Fechar">×</button>
+            </div>
+
+            <input type="hidden" id="reminder-id">
+
+            <label for="reminder-title">Título *</label>
+            <input type="text" id="reminder-title" maxlength="120"
+                placeholder="Ex.: Entregar trabalho" required>
+
+            <label for="reminder-message">Mensagem</label>
+            <textarea id="reminder-message" rows="2" maxlength="500"
+                placeholder="Informações do lembrete..."></textarea>
+
+            <label for="reminder-datetime">Data e horário *</label>
+            <input type="datetime-local" id="reminder-datetime" required>
+
+            <div class="dialog-actions">
+                <button type="button" class="secondary-button"
+                    data-close-dialog="reminder-dialog">Cancelar</button>
+                <button type="submit" class="primary-button">Salvar lembrete</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- MENSAGENS DO APLICATIVO -->
+    <div class="toast-container" id="toast-container"
+        aria-live="polite" aria-atomic="true"></div>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+</body>
+</html>

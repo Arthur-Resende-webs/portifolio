@@ -1,0 +1,570 @@
+
+/* =========================================================
+   ARTHUR RESENDE WEBS
+   Arquivo: css/components.css
+
+   Responsável por:
+   - Capas ilustradas dos projetos
+   - Elementos decorativos
+   - Menu mobile
+   - Animações do menu
+   ========================================================= */
+
+
+/* =========================================================
+   1. BASE DAS CAPAS DOS PROJETOS
+   ========================================================= */
+
+.project-cover {
+    position: relative;
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: #101426;
+}
+
+.cover-decoration {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.project-cover::before,
+.project-cover::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.project-cover::before {
+    width: 230px;
+    height: 230px;
+    top: -100px;
+    right: -70px;
+    background: rgba(139, 92, 246, 0.16);
+    filter: blur(35px);
+}
+
+.project-cover::after {
+    width: 200px;
+    height: 200px;
+    bottom: -130px;
+    left: -50px;
+    background: rgba(59, 130, 246, 0.16);
+    filter: blur(35px);
+}
+
+
+/* =========================================================
+   2. PROJETO: ORGANIZADOR FINANCEIRO
+   ========================================================= */
+
+.finance-cover {
+    background:
+        radial-gradient(
+            circle at 75% 25%,
+            rgba(59, 130, 246, 0.17),
+            transparent 35%
+        ),
+        linear-gradient(135deg, #11172b, #17122c 65%, #0b1020);
+}
+
+.finance-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.finance-orb {
+    position: absolute;
+    width: 145px;
+    height: 145px;
+    right: 14%;
+    top: 12%;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        rgba(139, 92, 246, 0.13),
+        rgba(59, 130, 246, 0.03)
+    );
+    box-shadow:
+        0 0 35px rgba(139, 92, 246, 0.12),
+        inset 0 0 30px rgba(59, 130, 246, 0.06);
+}
+
+.finance-orb::before,
+.finance-orb::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    border-radius: 50%;
+}
+
+.finance-orb::before {
+    inset: 14px;
+}
+
+.finance-orb::after {
+    inset: 29px;
+}
+
+.finance-symbol {
+    position: absolute;
+    top: 22%;
+    left: 20%;
+    z-index: 2;
+    color: #c4b5fd;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    text-shadow: 0 0 28px rgba(139, 92, 246, 0.5);
+}
+
+.finance-chart {
+    position: absolute;
+    left: 18%;
+    right: 18%;
+    bottom: 16%;
+    height: 34%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 10px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.finance-chart span {
+    display: block;
+    flex: 1;
+    max-width: 32px;
+    min-height: 12px;
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(
+        180deg,
+        #a78bfa,
+        #6366f1 75%,
+        rgba(59, 130, 246, 0.45)
+    );
+    box-shadow: 0 0 16px rgba(139, 92, 246, 0.16);
+}
+
+.finance-chart span:nth-child(1) {
+    height: 30%;
+}
+
+.finance-chart span:nth-child(2) {
+    height: 48%;
+}
+
+.finance-chart span:nth-child(3) {
+    height: 38%;
+}
+
+.finance-chart span:nth-child(4) {
+    height: 68%;
+}
+
+.finance-chart span:nth-child(5) {
+    height: 55%;
+}
+
+.finance-chart span:nth-child(6) {
+    height: 88%;
+}
+
+
+/* =========================================================
+   3. PROJETO: COLORLAB
+   ========================================================= */
+
+.colorlab-cover {
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(139, 92, 246, 0.16),
+            transparent 45%
+        ),
+        linear-gradient(135deg, #15142b, #11172b 60%, #101126);
+}
+
+.colorlab-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-circle {
+    position: absolute;
+    width: clamp(70px, 10vw, 112px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        inset -12px -12px 25px rgba(0, 0, 0, 0.16),
+        0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.color-circle:nth-child(1) {
+    left: 23%;
+    top: 20%;
+    background: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+}
+
+.color-circle:nth-child(2) {
+    left: 43%;
+    top: 31%;
+    background: linear-gradient(135deg, #93c5fd, #3b82f6);
+}
+
+.color-circle:nth-child(3) {
+    left: 34%;
+    top: 49%;
+    background: linear-gradient(135deg, #f0abfc, #c026d3);
+}
+
+.color-palette {
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    bottom: 12%;
+    display: flex;
+    gap: 7px;
+    height: 17%;
+    padding: 7px;
+    border: 1px solid rgba(203, 213, 225, 0.2);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.66);
+    backdrop-filter: blur(8px);
+}
+
+.color-palette span {
+    flex: 1;
+    border-radius: 6px;
+}
+
+.color-palette span:nth-child(1) {
+    background: #8b5cf6;
+}
+
+.color-palette span:nth-child(2) {
+    background: #6366f1;
+}
+
+.color-palette span:nth-child(3) {
+    background: #3b82f6;
+}
+
+.color-palette span:nth-child(4) {
+    background: #06b6d4;
+}
+
+.color-palette span:nth-child(5) {
+    background: #c4b5fd;
+}
+
+
+/* =========================================================
+   4. PROJETO: ORGANIZADOR DE ROTINA
+   ========================================================= */
+
+.routine-cover {
+    background:
+        radial-gradient(
+            circle at 75% 25%,
+            rgba(59, 130, 246, 0.17),
+            transparent 38%
+        ),
+        linear-gradient(135deg, #101b2c, #17142b 70%, #101426);
+}
+
+.routine-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.routine-calendar {
+    position: absolute;
+    width: min(48%, 230px);
+    min-width: 145px;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 13px;
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    border-radius: 15px;
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.2),
+        0 0 28px rgba(99, 102, 241, 0.09);
+    backdrop-filter: blur(10px);
+}
+
+.calendar-header {
+    height: 10px;
+    width: 45%;
+    margin-bottom: 13px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #a78bfa, #60a5fa);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.calendar-grid span {
+    display: block;
+    aspect-ratio: 1;
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 5px;
+    background: rgba(71, 85, 105, 0.24);
+}
+
+.calendar-grid span:nth-child(3n + 1) {
+    background: rgba(139, 92, 246, 0.42);
+    border-color: rgba(167, 139, 250, 0.35);
+}
+
+.calendar-grid span:nth-child(5),
+.calendar-grid span:nth-child(10) {
+    background: rgba(59, 130, 246, 0.42);
+    border-color: rgba(96, 165, 250, 0.35);
+}
+
+.routine-progress {
+    position: absolute;
+    left: 19%;
+    right: 19%;
+    bottom: 13%;
+    height: 8px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: rgba(148, 163, 184, 0.2);
+}
+
+.routine-progress::before {
+    content: "";
+    display: block;
+    width: 68%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+    box-shadow: 0 0 14px rgba(99, 102, 241, 0.35);
+}
+
+
+/* =========================================================
+   5. MENU PARA CELULARES
+   ========================================================= */
+
+/*
+   O menu compacto só aparece em telas menores.
+   O JavaScript deverá alternar:
+   - .is-open na navegação
+   - .is-active no botão
+*/
+
+@media (max-width: 760px) {
+    .menu-toggle {
+        display: flex;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        border-radius: 12px;
+        background: rgba(15, 23, 42, 0.75);
+        color: #e2e8f0;
+        cursor: pointer;
+        transition:
+            background 180ms ease,
+            border-color 180ms ease,
+            transform 180ms ease;
+    }
+
+    .menu-toggle:hover {
+        border-color: rgba(139, 92, 246, 0.65);
+        background: rgba(139, 92, 246, 0.12);
+    }
+
+    .menu-toggle:focus-visible {
+        outline: 2px solid #a78bfa;
+        outline-offset: 4px;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        border-radius: 99px;
+        background: #e2e8f0;
+        transform-origin: center;
+        transition:
+            transform 180ms ease,
+            opacity 180ms ease;
+    }
+
+    .menu-toggle.is-active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.is-active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .main-navigation {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 16px;
+        right: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        padding: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 16px;
+        background: rgba(11, 13, 23, 0.97);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(18px);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+
+        transition:
+            opacity 180ms ease,
+            transform 180ms ease,
+            visibility 180ms ease;
+        z-index: 100;
+    }
+
+    .main-navigation.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .main-navigation .nav-link {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 11px 14px;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        text-align: left;
+    }
+
+    .main-navigation .nav-link:hover,
+    .main-navigation .nav-link:focus-visible {
+        background: rgba(139, 92, 246, 0.12);
+    }
+
+    .main-navigation .nav-link::after {
+        display: none;
+    }
+
+    .main-navigation .nav-link.active {
+        color: #c4b5fd;
+        background: rgba(139, 92, 246, 0.12);
+    }
+}
+
+
+/* =========================================================
+   6. TELAS MUITO ESTREITAS
+   ========================================================= */
+
+@media (max-width: 420px) {
+    .finance-orb {
+        width: 115px;
+        height: 115px;
+        right: 10%;
+        top: 14%;
+    }
+
+    .finance-symbol {
+        left: 14%;
+        top: 20%;
+    }
+
+    .finance-chart {
+        left: 12%;
+        right: 12%;
+        gap: 7px;
+    }
+
+    .color-circle {
+        width: 72px;
+    }
+
+    .color-palette {
+        left: 13%;
+        right: 13%;
+        gap: 5px;
+    }
+
+    .routine-calendar {
+        width: 54%;
+        min-width: 130px;
+        padding: 10px;
+    }
+
+    .calendar-grid {
+        gap: 5px;
+    }
+}
+
+
+/* =========================================================
+   7. ACESSIBILIDADE: REDUZIR MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-toggle,
+    .menu-toggle span,
+    .main-navigation {
+        transition: none;
+    }
+}
+
+
+/* Animações de entrada das seções */
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 500ms ease,
+        transform 500ms ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
